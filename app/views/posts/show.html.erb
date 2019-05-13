@@ -1,0 +1,29 @@
+<%= link_to 'All posts', posts_path %>
+<h1><%= @post.title %></h1>
+
+<p><%= @post.body %></p>
+
+<p><%#= link_to 'Edit', edit_post_path(@post) %></p>
+
+<p><%= link_to 'Скачать', download_dicom_path(id: @post) %></p>
+
+<div id="dwv">
+    <div class="layerContainer">
+        <canvas class="imageLayer"></canvas>
+    </div>
+</div>
+
+<script>
+// base function to get elements
+dwv.gui.getElement = dwv.gui.base.getElement;
+dwv.gui.displayProgress = function (percent) {};
+
+// create the dwv app
+var app = new dwv.App();
+// initialise with the id of the container div
+app.init({
+    "containerDivId": "dwv"
+});
+// load dicom data
+app.loadURLs(["<%= @post.image_url %>"]);
+</script>

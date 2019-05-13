@@ -1,0 +1,39 @@
+Имя: <%= @patient.name %></br>
+Фамилия: <%= @patient.last_name %></br>
+Возраст: 56 лет </br>
+
+
+<table>
+  <tr>
+    <th>ДАТА</th>
+    <th>ТИП</th>
+  </tr>
+  <% MedicalDatum.all.each do |m_d| %>
+    <tr>
+     <td>
+      <a href="<%= medical_datum_path(m_d) %>">
+        <%= m_d.created_at  %>
+      </a>
+     </td>
+     <td>
+      <a href="<%= medical_datum_path(m_d) %>">
+        <%= m_d.data_type  %>
+      </a>
+     </td>
+    </tr>
+
+  <% end %>
+</table>
+
+<style>
+table tr a {
+    display:block;
+    height:100%;
+    width:100%;
+}
+
+table tr td {
+    padding-left: 0;
+    padding-right: 0;
+}
+</style>
