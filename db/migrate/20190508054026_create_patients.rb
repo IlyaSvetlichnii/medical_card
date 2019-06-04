@@ -11,12 +11,8 @@ class CreatePatients < ActiveRecord::Migration[5.2]
       t.string :blood_type
       t.string :allergy
       t.string :email,              null: false, default: ""
-      t.string :encrypted_password, null: false, default: ""
+      t.string :password_digest
 
-      t.string   :reset_password_token
-      t.datetime :reset_password_sent_at
-
-      t.datetime :remember_created_at
       t.references :doctor, foreign_key: true
 
       t.timestamps null: false

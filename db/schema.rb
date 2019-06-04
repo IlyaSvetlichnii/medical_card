@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_08_054058) do
+ActiveRecord::Schema.define(version: 2019_06_04_053434) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -41,17 +41,27 @@ ActiveRecord::Schema.define(version: 2019_05_08_054058) do
   create_table "doctors", force: :cascade do |t|
     t.string "name"
     t.string "last_name"
+    t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "medical_data", force: :cascade do |t|
+  create_table "ecg", force: :cascade do |t|
     t.integer "patient_id"
-    t.string "data_type"
+    t.json "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["patient_id"], name: "index_ecg_on_patient_id"
+  end
+
+  create_table "medical_files", force: :cascade do |t|
+    t.integer "patient_id"
+    t.string "title"
     t.json "basic_data"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["patient_id"], name: "index_medical_data_on_patient_id"
+    t.string "file"
+    t.index ["patient_id"], name: "index_medical_files_on_patient_id"
   end
 
   create_table "patients", force: :cascade do |t|
@@ -65,10 +75,7 @@ ActiveRecord::Schema.define(version: 2019_05_08_054058) do
     t.string "blood_type"
     t.string "allergy"
     t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
+    t.string "password_digest"
     t.integer "doctor_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -81,6 +88,14 @@ ActiveRecord::Schema.define(version: 2019_05_08_054058) do
     t.string "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "temperatures", force: :cascade do |t|
+    t.integer "patient_id"
+    t.string "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["patient_id"], name: "index_temperatures_on_patient_id"
   end
 
   create_table "users", force: :cascade do |t|

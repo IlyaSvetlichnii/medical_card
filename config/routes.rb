@@ -3,7 +3,15 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
 
   devise_for :users
-  root to: 'posts#index'
+  root to: 'user#index'
+
+  get '/login', to: 'sessions#new'
+  post '/login', to: 'sessions#create'
+  get '/logout', to: 'sessions#destroy'
+
+  get '/doctors', to: 'doctors#index'
+
+  post 'patient', to: 'patients#create'
 
   resources :posts
   post 'write', to: 'medical_datums#write'
