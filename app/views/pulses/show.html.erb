@@ -1,0 +1,37 @@
+<div id="chartContainer" style="height: 600px;"></div>
+
+<script>
+window.onload = function () {
+var array = <%= @array %>;
+var new_arr= [];
+
+array.forEach(function(element) {
+  new_arr.push({y: element})
+});
+
+
+var chart = new CanvasJS.Chart("chartContainer", {
+	animationEnabled: true,
+	zoomEnabled: true,
+	theme: "light2",
+	title:{
+		text: "Пульс"
+	},
+	axisY:{
+		includeZero: false
+	},
+	data: [{
+		type: "line",
+		markerSize: 1,
+		dataPoints: new_arr
+	}]
+});
+chart.render();
+
+}
+
+</script>
+
+<div id="chartContainer" style="height: 370px; width: 100%;"></div>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+

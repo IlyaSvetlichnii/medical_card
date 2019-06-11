@@ -1,9 +1,11 @@
 class Patient < ApplicationRecord
   has_secure_password
 
-  devise :database_authenticatable, :registerable
+  mount_uploader :avatar, AvatarUploader
 
-  has_many :medical_datums
+  has_many :heart_rates
+  has_many :pulse_oximeters
+  has_many :pulses
 
   belongs_to :doctor
 end

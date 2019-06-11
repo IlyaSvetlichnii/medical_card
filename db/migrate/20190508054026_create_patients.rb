@@ -12,6 +12,8 @@ class CreatePatients < ActiveRecord::Migration[5.2]
       t.string :allergy
       t.string :email,              null: false, default: ""
       t.string :password_digest
+      t.string :loginname
+      t.text   :description
 
       t.references :doctor, foreign_key: true
 

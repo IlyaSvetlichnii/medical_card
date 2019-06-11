@@ -2,7 +2,7 @@
 <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
   <div class="container-fluid">
     <div class="navbar-wrapper">
-      <a class="navbar-brand">Врачи</a>
+      <a class="navbar-brand">ЭКГ</a>
     </div>
   </div>
 </nav>
@@ -13,38 +13,30 @@
       <div class="col-md-12">
         <div class="card card-plain">
           <div class="card-header card-header-primary">
-            <h4 class="card-title mt-0"> Список врачей</h4>
+            <h4 class="card-title mt-0"> Показания ЭКГ</h4>
             <p class="card-category"> * </p>
           </div>
           <div class="card-body">
             <div class="table-responsive">
               <table class="table table-hover">
                 <thead class="">
-                  <th></th>
                   <th>
-                    Ф.И.О.
+                    ID
                   </th>
                   <th>
-                    Номер телефона
+                    Дата
                   </th>
                 </thead>
                 <tbody>
-                  <% @doctors.each do |doctor| %>
-                    <tr>
-                      <td>
-                        <%= image_tag doctor.avatar_url, class: 'rounded-circle img-fluid'%>
-                      </td>
-                      <td>
-                        <p style="font-size: 30px;">
-                          <%= doctor.last_name %> <%= doctor.name %> <%= doctor.patronymic %>
-                        </p>
-                      </td>
-                      <td>
-                        <p style="font-size: 30px;">
-                          <%= doctor.phone_number %>
-                        </p>
-                      </td>
-                    </tr>
+                  <% @ecg_readings.each do |ecg| %>
+                  <tr class="table-row" data-href="<%= ecg_path(ecg) %>">
+                    <td>
+                      <%= ecg.id %>
+                    </td>
+                    <td>
+                      <%= ecg.created_at %>
+                    </td>
+                  </tr>
                   <% end %>
                 </tbody>
               </table>
@@ -55,3 +47,11 @@
     </div>
   </div>
 </div>
+
+<script>
+$(document).ready(function($) {
+    $(".table-row").click(function() {
+        window.document.location = $(this).data("href");
+    });
+});
+</script>

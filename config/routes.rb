@@ -3,29 +3,30 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
 
   devise_for :users
-  root to: 'user#index'
+  root to: 'doctors#index'
 
-  get '/login', to: 'sessions#new'
-  post '/login', to: 'sessions#create'
-  get '/logout', to: 'sessions#destroy'
-
-  get '/doctors', to: 'doctors#index'
+  get  'login',  to: 'sessions#new'
+  get  'logout', to: 'sessions#destroy'
+  post 'login',  to: 'sessions#create'
 
   post 'patient', to: 'patients#create'
+  get  'profile', to: 'patients#profile'
 
-  resources :posts
-  post 'write', to: 'medical_datums#write'
-  # get 'medical_data', to: 'medical_datums#index'
-  resources :medical_datums
+  resources :doctors, only: [:index, :show]
+  resources :pulses, only: [:index, :show]
+  resources :ecg, only: [:index, :show]
+  resources :medical_files
 
-  get 'download_dicom', to: "posts#download_dicom"
+  get 'download_file', to: "medical_files#download"
 
   namespace 'api' do
     # post 'signup', to: 'users#create'
     post 'login', to: 'authentication#login'
+    # post 'logout', to: 'sessions#destroy'
 
     get 'patient/info', to: 'patients#info'
-    post 'medical_datums/write', to: 'medical_datums#write'
-    # post 'logout', to: 'sessions#destroy'
+    post 'medical_file', to: 'medical_files#create'
+
+    post 'save_pulse', to: 'pulse#create'
   end
 end

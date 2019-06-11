@@ -1,5 +1,10 @@
 class DoctorsController < ApplicationController
-  def new
+
+  def index
+    @doctors = Doctor.all
+  end
+
+  def new_patient
     @user = User.new
   end
 
@@ -16,6 +21,6 @@ class DoctorsController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:username, :password)
+    params.require(:user).permit(:login, :password)
   end
 end

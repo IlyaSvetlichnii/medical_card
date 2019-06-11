@@ -3,8 +3,12 @@ class PatientsController < ApplicationController
     @user = User.new
   end
 
+  def profile
+    @patient = Patient.first
+    @my_doctor = @patient.doctor
+  end
+
   def create
-    binding.pry
     @user = User.new(user_params)
 
     if @user.save

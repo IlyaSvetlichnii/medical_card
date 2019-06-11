@@ -1,0 +1,47 @@
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
+  <div class="container-fluid">
+    <div class="navbar-wrapper">
+      <a class="navbar-brand">Снимки</a>
+    </div>
+  </div>
+</nav>
+<!-- End Navbar -->
+<div class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card card-plain">
+          <div class="card-header card-header-primary">
+            <h4 class="card-title mt-0"><%= @file.title %></h4>
+            <%= link_to 'Скачать', download_file_path(id: @file), class: "btn btn-round", style: "margin-left: 40%;" %>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <div id="dwv">
+                <div class="layerContainer">
+                    <canvas class="imageLayer"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // base function to get elements
+  dwv.gui.getElement = dwv.gui.base.getElement;
+  dwv.gui.displayProgress = function (percent) {};
+
+  // create the dwv app
+  var app = new dwv.App();
+  // initialise with the id of the container div
+  app.init({
+      "containerDivId": "dwv"
+  });
+  // load dicom data
+  app.loadURLs(["<%= @file.file_url %>"]);
+</script>
