@@ -12,6 +12,9 @@ Rails.application.routes.draw do
   post 'patient', to: 'patients#create'
   get  'profile', to: 'patients#profile'
 
+  get  'my_patients', to: 'doctors#my_patients'
+  get  'my_patient',  to: 'patients#show'
+
   resources :doctors, only: [:index, :show]
   resources :pulses, only: [:index, :show]
   resources :ecg, only: [:index, :show]

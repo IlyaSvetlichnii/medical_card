@@ -1,11 +1,17 @@
 class DoctorsController < ApplicationController
+  skip_before_action :current_user
+  before_action :current_doctor
 
   def index
     @doctors = Doctor.all
   end
 
   def new_patient
-    @user = User.new
+    @user = Patient.new
+  end
+
+  def my_patients
+    @patients = Patient.all
   end
 
   def create

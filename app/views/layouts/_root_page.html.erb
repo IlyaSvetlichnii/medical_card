@@ -1,25 +1,10 @@
 <body>
   <form class="vldform vldauth" action="login" method="POST">
     <h1>Вход</h1>
-    <input class="vldform__textbox" type="text" name="phone_number" placeholder="Номер телефона" required>
+    <input class="vldform__textbox" type="text" name="phone_number" placeholder="Логин" required>
     <input class="vldform__textbox" type="password" name="password" id="" placeholder="Пароль" required>
     <%# <a class="vldform__recoverypassword" href="#" onclick="showrecoveryform()">Forgot password?</a> %>
     <input class="vldform__button" type="submit" value="Войти">
-    <p class="vldform__signup">У Вас нету аккаунта?
-      <a class="vldform__signuplink" href="#" onclick="showregform()">Регистрация</a>
-    </p>
-  </form>
-  <form class="vldform vldreg" action="register.php" method="POST">
-      <h1>Регистрация</h1>
-      <input class="vldform__textbox" type="text" name="phone_number" placeholder="Ф.И.О." required>
-      <input class="vldform__textbox" type="text" name="phone_number" placeholder="Номер телефона" required>
-      <input class="vldform__textbox" type="email" name="email" id="" placeholder="Email" required>
-      <input class="vldform__textbox" type="password" name="password" id="" placeholder="Пароль" required>
-      <input class="vldform__textbox" type="password" name="password_confirmation" id="" placeholder="Повторите пароль" required>
-      <input class="vldform__button" type="submit" value="Зарегистрироваться">
-      <p class="vldform__signup">У Вас есть аккаунт?
-        <a href="#" onclick="showauthform()">Войти</a>
-      </p>
   </form>
 </body>
 

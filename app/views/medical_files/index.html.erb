@@ -20,13 +20,12 @@
             <div id="myModal" class="modal">
               <div class="modal-content">
                 <span class="close">&times;</span>
-                <%= form_for MedicalFile.new do |f| %>
+                <%= form_for HeartRate.new, as: :medical_file, url: medical_files_path do |f| %>
                   <div class="input-group custom-input-group test-file-input">
                     <div class="form-group form-file-upload form-file-multiple">
                       <input type="file" multiple="" class="inputFileHidden">
                       <div class="input-group">
                         <span class="input-group-btn">
-                            <%= f.text_field(:title, class: 'form-control') %>
                             <%= f.file_field(:file, class: 'form-control input-file', id: "individual-avatar") %>
                             <label tabindex="0" for="individual-avatar" class="input-file-trigger" id="individual-file-trigger">Upload avatar</label>
                             <button type="button" class="btn btn-fab btn-round btn-primary">
@@ -49,9 +48,6 @@
                     ID
                   </th>
                   <th>
-                    Название
-                  </th>
-                  <th>
                     Дата
                   </th>
                 </thead>
@@ -60,9 +56,6 @@
                   <tr class="table-row" data-href="<%= medical_file_path(file) %>">
                     <td>
                       <%= file.id %>
-                    </td>
-                    <td>
-                      <%= file.title %>
                     </td>
                     <td>
                       <%= file.created_at %>

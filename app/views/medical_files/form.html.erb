@@ -1,0 +1,18 @@
+ <%= form_for HeartRate.new do |f| %>
+                  <div class="input-group custom-input-group test-file-input">
+                    <div class="form-group form-file-upload form-file-multiple">
+                      <input type="file" multiple="" class="inputFileHidden">
+                      <div class="input-group">
+                        <span class="input-group-btn">
+                            <%= f.text_field(:title, class: 'form-control') %>
+                            <%= f.file_field(:file, class: 'form-control input-file', id: "individual-avatar") %>
+                            <label tabindex="0" for="individual-avatar" class="input-file-trigger" id="individual-file-trigger">Upload avatar</label>
+                            <button type="button" class="btn btn-fab btn-round btn-primary">
+                                <i class="material-icons">attach_file</i>
+                            </button>
+                            <%= f.submit %>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                <% end %>

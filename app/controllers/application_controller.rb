@@ -3,8 +3,16 @@ class ApplicationController < ActionController::Base
   before_action :current_user
 
   def current_user
-    if session[:user_id]
-      @current_user ||= Patient.find(session[:user_id])
+    if session[:pstient_id]
+      @current_user ||= Patient.find(session[:patient_id])
+    else
+      @current_user = nil
+    end
+  end
+
+  def current_doctor
+    if session[:doctor_id]
+      @current_user ||= Doctor.find(session[:doctor_id])
     else
       @current_user = nil
     end

@@ -19,7 +19,6 @@ gem 'dicom'
 gem 'webpacker'
 gem 'activeadmin'
 gem 'devise'
-
 gem 'jwt'
 gem 'bcrypt', '~> 3.1.7'
 

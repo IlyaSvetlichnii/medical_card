@@ -3,15 +3,26 @@ class SessionsController < ApplicationController
     user = Patient.where(phone_number: params[:phone_number]).first || Doctor.where(phone_number: params[:phone_number]).first
 
     if user && user.authenticate(params[:password])
-      session[:user_id] = user.id
-      redirect_to root_url
+      _new_session(user)
     else
       redirect_to root_url
     end
   end
 
   def destroy
-    session[:user_id] = nil
+    session[:patient_id] = nil
     redirect_to root_url
+  end
+
+  private
+
+  def _new_session(user)
+    if user.class == Doctor
+      session[:doctor_id] = user.id
+      redirect_to my_patients_url
+    else
+      session[:patient_id] = user.id
+      redirect_to root_url
+    end
   end
 end

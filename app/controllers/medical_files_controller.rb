@@ -1,15 +1,12 @@
 class MedicalFilesController < ApplicationController
+  before_action :current_doctor
 
   def index
-    @files = MedicalFile.all
-  end
-
-  def new
-    @user = User.new
+    @files = HeartRate.all
   end
 
   def show
-    @file = MedicalFile.find(params[:id])
+    @file = HeartRate.find(params[:id])
   end
 
   def create
@@ -23,12 +20,11 @@ class MedicalFilesController < ApplicationController
   end
 
   def download
-    file = MedicalFile.find(params[:id])
-  #  binding.pry
+    file = HeartRate.find(params[:id])
     send_file(file.file.path)
   end
 
   def file_params
-    params.require(:medical_file).permit(:title, :file)
+    params.require(:medical_file).permit(:file)
   end
 end
