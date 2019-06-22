@@ -1,9 +1,7 @@
 class PatientsController < ApplicationController
-  skip_before_action :current_user, only: [:show]
-  before_action :current_doctor, only: [:show]
-  def new
-    @user = User.new
-  end
+  # skip_before_action :current_user, only: [:show]
+  # before_action :current_doctor, only: [:show]
+  def new; end
 
   def profile
     @patient = Patient.first
@@ -15,17 +13,22 @@ class PatientsController < ApplicationController
   end
 
   def create
-    @user = User.new(user_params)
+    @user = @current_user.patients.new(patient_params)
 
     if @user.save
-      session[:user_id] = @user.id
-      redirect_to root_path
+      redirect_to my_patients_path
     else
       render :new
     end
   end
 
-  def user_params
-    params.require(:user).permit(:username, :password)
+  def update
+    @patient = Patient.find(params[:id])
+    @patient.update(patient_params)
+    redirect_to my_patient_path(id: @patient.id)
+  end
+
+  def patient_params
+    params.permit(:id, :last_name, :name, :patronymic, :email, :dob, :address, :phone_number, :blood_type, :allergy, :password)
   end
 end

@@ -5,7 +5,6 @@
 
     has_many :heart_rates
     has_many :pulse_oximeters
-    has_many :pulses
 
     belongs_to :doctor
   end

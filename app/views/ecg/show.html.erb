@@ -1,16 +1,33 @@
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
+  <div class="container-fluid">
+    <div class="navbar-wrapper">
+      <a class="navbar-brand">Электрокардиография</a>
+    </div>
+  </div>
+</nav>
+<!-- End Navbar -->
+<div class="content">
+
 <div id="chartContainer" style="height: 600px;"></div>
-<%= @ecg_reading.comment %>
+
+<% if is_doctor? %>
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-12">
         <div class="card">
           <div class="card-body">
             <form action="patient" method="post" >
-              <div class="row">
-                <div class="col-md-4">
-                  <div class="form-group">
-                    <label class="bmd-label-floating">Коментарий</label>
-                    <input type="text" class="form-control" name="comment" value="<%= @ecg_reading.comment %>">
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label>Комментарий</label>
+                      <div class="form-group">
+                        <input type="hidden" name="id" value="<%= @ecg_reading.id %>" />
+                        <textarea class="form-control" rows="5" value="<%= @ecg_reading.comment %>"></textarea>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -21,6 +38,35 @@
         </div>
       </div>
     </div>
+  </div>
+<% else %>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-body">
+            <form action="patient" method="post" >
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label>Комментарий</label>
+                      <div class="form-group">
+                        <%# <label class="bmd-label-floating"> </label> %>
+                        <h4><%= @ecg_reading.comment %></h4>
+                        <%# <textarea class="form-control" rows="5" value=""></textarea> %>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
   </div>
 
 <script>
@@ -38,13 +84,31 @@ var chart = new CanvasJS.Chart("chartContainer", {
 	zoomEnabled: true,
 	theme: "light2",
 	title:{
-		text: "ECG <%= @ecg_reading.created_at %>"
+		text: "<%= @patient.name %> <%= @patient.last_name %> (<%= @ecg_reading.created_at %>)"
 	},
-	axisY:{
-		includeZero: false
-	},
+	// axisY:{
+
+	// },
+  axisY:{
+      	// stripLines:yAxisStripLinesArray,
+        includeZero: false,
+        gridThickness: 2,
+        gridColor:"#DC74A5",
+        lineColor:"#DC74A5",
+        tickColor:"#DC74A5",
+        labelFontColor:"#DC74A5",
+      },
+      axisX:{
+      	// stripLines:xAxisStripLinesArray,
+        gridThickness: 2,
+        gridColor:"#DC74A5",
+        lineColor:"#DC74A5",
+        tickColor:"#DC74A5",
+        labelFontColor:"#DC74A5",
+      },
 	data: [{
 		type: "line",
+    color:"black",
 		markerSize: 1,
 		dataPoints: new_arr
 	}]

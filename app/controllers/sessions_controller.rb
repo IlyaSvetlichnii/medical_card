@@ -11,6 +11,7 @@ class SessionsController < ApplicationController
 
   def destroy
     session[:patient_id] = nil
+    session[:doctor_id] = nil
     redirect_to root_url
   end
 

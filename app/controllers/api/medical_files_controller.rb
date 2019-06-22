@@ -13,17 +13,6 @@ class Api::MedicalFilesController < Api::BaseController
     end
   end
 
-  def write
-    binding.pry
-    # {"lat"=>"37.4219983", "lon"=>"-122.084", "number"=>"5", "dir"=>"1", "controller"=>"medical_datums", "action"=>"write"}
-    patient = Patient.first
-    #patient.medical_datums.create(data_type: params['type'], basic_data: params)
-    @current_user.medical_datums.create(data_type: params['type'], basic_data: params)
-    render status: 200, json: {
-      message: "Данные успешно добавлены"
-    }.to_json
-  end
-
   private
 
   def file_params

@@ -7,6 +7,12 @@
   <div class="sidebar-wrapper">
     <ul class="nav">
       <% if @current_user.class == Doctor %>
+        <li class="nav-item <%= active_class(new_patient_path)%>">
+          <a class="nav-link" href="<%= new_patient_path %>">
+            <i class="material-icons">person_add</i>
+            <p>Добавить пациента</p>
+          </a>
+        </li>
         <li class="nav-item <%= active_class(my_patients_path)%>">
           <a class="nav-link" href="<%= my_patients_path %>">
             <i class="material-icons">group</i>
@@ -45,6 +51,12 @@
         </a>
       </li>
       <% end %>
+      <li class="nav-item active-pro">
+        <a class="nav-link" href="/logout" data-method="delete">
+          <i class="material-icons">exit_to_app</i>
+          <p>Exit</p>
+        </a>
+      </li>
     </ul>
   </div>
 </div>

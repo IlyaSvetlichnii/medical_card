@@ -29,7 +29,7 @@
                 </thead>
                 <tbody>
                   <% @pulses.each do |pulse| %>
-                  <tr class="table-row" data-href="<%= pulse_path(pulse) %>">
+                  <tr class="table-row" data-href="<%= pulse_path(pulse, patient: params[:patient]) %>">
                     <td>
                       <%= pulse.id %>
                     </td>

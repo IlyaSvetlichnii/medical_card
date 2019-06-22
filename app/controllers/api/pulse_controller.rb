@@ -3,7 +3,7 @@ class Api::PulseController < Api::BaseController
     pulse = params["pulse_sensor"]
 
     if pulse.present?
-      @current_user.pulses.create(value: eval(pulse))
+      @current_user.pulse_oximeters.create(value: eval(pulse))
       response_builder(:ok, "Показания пульса были успешно сохранены")
     else
       response_builder(422, "Необходимо передать параметр pulse_sensor")

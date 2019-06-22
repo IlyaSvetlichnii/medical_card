@@ -1,8 +1,6 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.5.2'
-
 gem 'rails', '~> 5.2.2'
 gem 'pg'
 gem 'puma', '~> 3.11'
@@ -14,7 +12,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'mini_magick', '~> 4.8'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'carrierwave'
-gem "rmagick"
+# gem "rmagick"
 gem 'dicom'
 gem 'webpacker'
 gem 'activeadmin'

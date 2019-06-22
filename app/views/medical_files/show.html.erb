@@ -1,10 +1,9 @@
-  <%# binding.pry %>
 
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
   <div class="container-fluid">
     <div class="navbar-wrapper">
-      <a class="navbar-brand">Снимки</a>
+      <a class="navbar-brand">DICOM</a>
     </div>
   </div>
 </nav>
@@ -14,9 +13,11 @@
     <div class="row">
       <div class="col-md-12">
         <div class="card card-plain">
-          <div class="card-header card-header-primary">
-            <%= link_to 'Скачать', download_file_path(id: @file), class: "btn btn-round", style: "margin-left: 40%;" %>
-          </div>
+          <% if @current_user.class == Doctor %>
+            <div class="card-header card-header-primary">
+              <%= link_to 'Скачать', download_file_path(id: @file), class: "btn btn-round", style: "margin-left: 40%;" %>
+            </div>
+          <% end %>
           <div class="card-body">
             <div class="table-responsive">
               <div id="dwv">
@@ -30,7 +31,65 @@
       </div>
     </div>
   </div>
-</div>
+
+<% if is_doctor? %>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-body">
+            <form action="<%= update_comment_path %>" method="post" >
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label>Комментарий</label>
+                      <div class="form-group">
+                        <textarea class="form-control" rows="5" name='comment' value="<%= @file.comment %>"></textarea>
+                        <input type="hidden" name="id" value="<%= @file.id %>" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <button type="submit" class="btn btn-primary pull-right">Изменить</button>
+              <div class="clearfix"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% else %>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-body">
+            <form action="patient" method="post" >
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label>Комментарий</label>
+                      <div class="form-group">
+                        <%# <label class="bmd-label-floating"> </label> %>
+                        <h4><%= @file.comment %></h4>
+                        <%# <textarea class="form-control" rows="5" value=""></textarea> %>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+  </div>
+
 
 <script>
   // base function to get elements

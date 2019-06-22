@@ -1,19 +1,21 @@
 class MedicalFilesController < ApplicationController
-  before_action :current_doctor
+  # before_action :current_doctor
 
   def index
-    @files = HeartRate.all
+    @files = _patient.heart_rates.where.not(file: nil)
   end
 
   def show
     @file = HeartRate.find(params[:id])
+
+    if @file.file.content_type == "application/pdf"
+      send_file(@file.file.path)
+    end
   end
 
   def create
-    file = @current_user.heart_rates
-
-    if file.create(file_params)
-      redirect_to medical_files_path
+    if _patient.heart_rates.create(file_params)
+      redirect_to medical_files_path(patient: _patient.id)
     else
       render :new
     end

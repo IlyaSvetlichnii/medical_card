@@ -5,15 +5,19 @@ Rails.application.routes.draw do
   devise_for :users
   root to: 'doctors#index'
 
-  get  'login',  to: 'sessions#new'
-  get  'logout', to: 'sessions#destroy'
-  post 'login',  to: 'sessions#create'
+  get     'login',  to: 'sessions#new'
+  delete  'logout', to: 'sessions#destroy'
+  post    'login',  to: 'sessions#create'
 
   post 'patient', to: 'patients#create'
+  get 'new_patient', to: 'patients#new'
   get  'profile', to: 'patients#profile'
 
   get  'my_patients', to: 'doctors#my_patients'
   get  'my_patient',  to: 'patients#show'
+  post  'update_patient',  to: 'patients#update'
+  post  'update_comment',  to: 'heart_rates#update_comment'
+  post  'pulse_comment',  to: 'pulses#comment'
 
   resources :doctors, only: [:index, :show]
   resources :pulses, only: [:index, :show]
@@ -31,5 +35,6 @@ Rails.application.routes.draw do
     post 'medical_file', to: 'medical_files#create'
 
     post 'save_pulse', to: 'pulse#create'
+    post 'ecg', to: 'ecg#create'
   end
 end

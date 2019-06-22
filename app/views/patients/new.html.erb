@@ -12,40 +12,51 @@
       <div class="col-md-8">
         <div class="card">
           <div class="card-header card-header-primary">
-            <h4 class="card-title"><%= @patient.last_name %> <%= @patient.name %> <%= @patient.patronymic %></h4>
+            <h4 class="card-title">Добавить пациента</h4>
           </div>
           <div class="card-body">
-            <form action="update_patient" method="post" >
-              <input type="hidden" name="id" value="<%= @patient.id %>" />
+            <form action="patient" method="post" >
               <div class="row">
                 <div class="col-md-4">
                   <div class="form-group">
+                    <label class="bmd-label-floating">ID</label>
+                    <input type="number" class="form-control" name="id">
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label class="bmd-label-floating">Пароль</label>
+                    <input type="password" class="form-control" name="password">
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
                     <label class="bmd-label-floating">Фамилия</label>
-                    <input type="text" class="form-control" name="last_name" value="<%= @patient.last_name %>">
+                    <input type="text" class="form-control" name="last_name">
                   </div>
                 </div>
                 <div class="col-md-4">
                   <div class="form-group">
                     <label class="bmd-label-floating">Имя</label>
-                    <input type="text" class="form-control" name="name" value="<%= @patient.name %>">
+                    <input type="text" class="form-control" name="name">
                   </div>
                 </div>
                 <div class="col-md-4">
                   <div class="form-group">
                     <label class="bmd-label-floating">Отчество</label>
-                    <input type="text" class="form-control" name="patronymic" value="<%= @patient.patronymic %>">
+                    <input type="text" class="form-control" name="patronymic">
                   </div>
                 </div>
                 <div class="col-md-4">
                   <div class="form-group">
                     <label class="bmd-label-floating">Email</label>
-                    <input type="email" class="form-control" name="email" value="<%= @patient.email %>">
+                    <input type="email" class="form-control" name="email">
                   </div>
                 </div>
                 <div class="col-md-4">
                   <div class="form-group">
                     <label class="bmd-label-floating">Дата рождения</label>
-                    <input type="text" class="form-control" name="dob" value="<%= @patient.dob %>">
+                    <input type="text" class="form-control" name="dob">
                   </div>
                 </div>
               </div>
@@ -54,7 +65,7 @@
                 <div class="col-md-12">
                   <div class="form-group">
                     <label class="bmd-label-floating">Адрес</label>
-                    <input type="text" class="form-control" name="address" value="<%= @patient.address %>">
+                    <input type="text" class="form-control" name="address">
                   </div>
                 </div>
               </div>
@@ -62,34 +73,25 @@
                 <div class="col-md-4">
                   <div class="form-group">
                     <label class="bmd-label-floating">Номер телефона</label>
-                    <input type="text" class="form-control" name="phone_number" value="<%= @patient.phone_number %>">
+                    <input type="text" class="form-control" name="phone_number">
                   </div>
                 </div>
                 <div class="col-md-4">
                   <div class="form-group">
                     <label class="bmd-label-floating">Группа крови</label>
-                    <input type="text" class="form-control" name="blood_type" value="<%= @patient.blood_type %>">
+                    <input type="text" class="form-control" name="blood_type">
                   </div>
                 </div>
                 <div class="col-md-4">
                   <div class="form-group">
                     <label class="bmd-label-floating">Аллергия</label>
-                    <input type="text" class="form-control" name="allergy" value="<%= @patient.allergy %>">
+                    <input type="text" class="form-control" name="allergy">
                   </div>
                 </div>
               </div>
-              <button type="submit" class="btn btn-primary pull-right">Обновить</button>
+              <button type="submit" class="btn btn-primary pull-right">Создать</button>
               <div class="clearfix"></div>
             </form>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="card card-profile">
-          <div class="card-body">
-            <a href="<%= ecg_index_path(patient: @patient.id) %>" class="btn btn-primary btn-round">ЭКГ</a>
-            <a href="<%= pulses_path(patient: @patient.id) %>" class="btn btn-primary btn-round">Пульс</a>
-            <a href="<%= medical_files_path(patient: @patient.id) %>" class="btn btn-primary btn-round">Файлы</a>
           </div>
         </div>
       </div>
