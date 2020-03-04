@@ -174,7 +174,7 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
     public_suffix (3.0.3)
-    puma (3.12.0)
+    puma (3.12.4)
     rack (2.0.6)
     rack-proxy (0.6.5)
       rack
@@ -217,7 +217,6 @@ GEM
     responders (2.4.1)
       actionpack (>= 4.2.0, < 6.0)
       railties (>= 4.2.0, < 6.0)
-    rmagick (2.16.0)
     ruby_dep (1.5.0)
     rubyzip (1.2.2)
     sass (3.7.3)
@@ -296,9 +295,8 @@ DEPENDENCIES
   mini_magick (~> 4.8)
   pg
   pry
-  puma (~> 3.11)
+  puma (~> 3.12)
   rails (~> 5.2.2)
-  rmagick
   sass-rails (~> 5.0)
   selenium-webdriver
   spring
